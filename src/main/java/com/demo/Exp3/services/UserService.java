@@ -2,6 +2,8 @@ package com.demo.Exp3.services;
 
 import com.demo.Exp3.Dto.AuthRequest;
 import com.demo.Exp3.Dto.RoleRequest;
+import com.demo.Exp3.config.auth.TokenProvider;
+import com.demo.Exp3.entities.Role;
 import com.demo.Exp3.entities.User;
 import com.demo.Exp3.enums.Status;
 import com.demo.Exp3.repositories.UserRepository;
@@ -21,6 +23,9 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder ;
 
+    @Autowired
+    TokenProvider tokenProvider;
+
     public Status registerUser(AuthRequest request){
         if(userRepository.findByUsername(request.getUserName())!=null){
             return Status.USERNAME_TAKEN;
@@ -29,6 +34,7 @@ public class UserService {
         User user = new User();
         user.setUsername((request.getUserName()));
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(Role.USER);
         userRepository.save(user);
         return Status.SUCCESS ;
     }
@@ -43,5 +49,9 @@ public class UserService {
             return Status.SUCCESS;
         }
         return Status.USER_NOT_FOUND;
+    }
+
+    public String getUsername(String token){
+        return tokenProvider.validateToken(token);
     }
 }

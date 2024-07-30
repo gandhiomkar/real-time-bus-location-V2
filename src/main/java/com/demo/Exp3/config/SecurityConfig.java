@@ -1,6 +1,7 @@
 package com.demo.Exp3.config;
 
 import com.demo.Exp3.config.auth.TokenProvider;
+import com.demo.Exp3.entities.Role;
 import com.demo.Exp3.security.JWTAuthenticationFilter;
 import com.demo.Exp3.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
         return httpSecurity.csrf(csrf->csrf.disable()).authorizeHttpRequests(requests-> requests
-                .requestMatchers("/api/v1/admin").authenticated()
+                .requestMatchers("/api/v1/admin").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers("/api/v1/user").hasAuthority(Role.USER.name())
                 .requestMatchers("/api/v1/**").permitAll()
+                        .anyRequest().authenticated()
         )
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
