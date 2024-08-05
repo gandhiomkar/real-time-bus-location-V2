@@ -1,13 +1,12 @@
-package com.demo.Exp3.services;
+package com.demo.Exp3.services.auth;
 
-import com.demo.Exp3.Dto.AuthRequest;
-import com.demo.Exp3.Dto.RoleRequest;
+import com.demo.Exp3.Dto.auth.AuthRequest;
+import com.demo.Exp3.Dto.auth.RoleRequest;
 import com.demo.Exp3.config.auth.TokenProvider;
-import com.demo.Exp3.entities.Role;
-import com.demo.Exp3.entities.User;
+import com.demo.Exp3.entities.auth.Role;
+import com.demo.Exp3.entities.auth.User;
 import com.demo.Exp3.enums.Status;
-import com.demo.Exp3.repositories.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.demo.Exp3.repositories.auth.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

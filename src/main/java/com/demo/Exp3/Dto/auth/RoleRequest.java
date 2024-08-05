@@ -1,6 +1,6 @@
-package com.demo.Exp3.Dto;
+package com.demo.Exp3.Dto.auth;
 
-import com.demo.Exp3.entities.Role;
+import com.demo.Exp3.entities.auth.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

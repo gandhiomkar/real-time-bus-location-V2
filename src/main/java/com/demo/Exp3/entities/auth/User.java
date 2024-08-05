@@ -1,4 +1,4 @@
-package com.demo.Exp3.entities;
+package com.demo.Exp3.entities.auth;
 
 import jakarta.persistence.*;
 import lombok.Getter;

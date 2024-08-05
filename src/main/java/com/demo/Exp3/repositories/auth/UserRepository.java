@@ -1,6 +1,6 @@
-package com.demo.Exp3.repositories;
+package com.demo.Exp3.repositories.auth;
 
-import com.demo.Exp3.entities.User;
+import com.demo.Exp3.entities.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

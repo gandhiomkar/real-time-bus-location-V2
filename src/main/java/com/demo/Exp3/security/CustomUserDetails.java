@@ -1,7 +1,7 @@
 package com.demo.Exp3.security;
 
-import com.demo.Exp3.entities.Role;
-import com.demo.Exp3.entities.User;
+import com.demo.Exp3.entities.auth.Role;
+import com.demo.Exp3.entities.auth.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

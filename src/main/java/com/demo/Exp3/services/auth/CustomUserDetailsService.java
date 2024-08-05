@@ -1,7 +1,7 @@
-package com.demo.Exp3.services;
+package com.demo.Exp3.services.auth;
 
-import com.demo.Exp3.entities.User;
-import com.demo.Exp3.repositories.UserRepository;
+import com.demo.Exp3.entities.auth.User;
+import com.demo.Exp3.repositories.auth.UserRepository;
 import com.demo.Exp3.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

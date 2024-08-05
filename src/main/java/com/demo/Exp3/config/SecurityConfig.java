@@ -1,9 +1,9 @@
 package com.demo.Exp3.config;
 
 import com.demo.Exp3.config.auth.TokenProvider;
-import com.demo.Exp3.entities.Role;
+import com.demo.Exp3.entities.auth.Role;
 import com.demo.Exp3.security.JWTAuthenticationFilter;
-import com.demo.Exp3.services.CustomUserDetailsService;
+import com.demo.Exp3.services.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

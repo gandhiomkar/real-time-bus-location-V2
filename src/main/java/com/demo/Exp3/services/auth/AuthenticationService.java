@@ -1,4 +1,4 @@
-package com.demo.Exp3.services;
+package com.demo.Exp3.services.auth;
 
 import com.demo.Exp3.config.auth.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;

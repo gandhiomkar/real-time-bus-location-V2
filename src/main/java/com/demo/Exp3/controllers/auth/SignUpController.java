@@ -1,7 +1,7 @@
-package com.demo.Exp3.controllers;
+package com.demo.Exp3.controllers.auth;
 
-import com.demo.Exp3.Dto.AuthRequest;
-import com.demo.Exp3.services.UserService;
+import com.demo.Exp3.Dto.auth.AuthRequest;
+import com.demo.Exp3.services.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
