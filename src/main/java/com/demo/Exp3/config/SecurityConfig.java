@@ -49,7 +49,9 @@ public class SecurityConfig {
         return httpSecurity.csrf(csrf->csrf.disable()).authorizeHttpRequests(requests-> requests
                 .requestMatchers("/api/v1/admin").hasAuthority(Role.ADMIN.name())
                         .requestMatchers("/api/v1/user").hasAuthority(Role.USER.name())
-                .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/api/v1/*").permitAll()
+                .requestMatchers("/api/v1/**","/static/**").permitAll()
+                        .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
         )
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

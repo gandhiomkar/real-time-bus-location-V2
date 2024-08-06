@@ -34,4 +34,5 @@ public class HomeController {
     public String admin(){
         return "hola Amigo!";
     };
+
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bus Location Tracker</title>
+    <script src="https://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <script>
+        var stompClient = null;
+        var intervalId = null;
+
+        function connect(busId) {
+            var socket = new SockJS('/api/v1/ws');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/bus/' + busId + '/location', function (locationUpdate) {
+                    showLocation(JSON.parse(locationUpdate.body));
+                });
+            });
+        }
+
+        function startSendingLocation(busId) {
+            intervalId = setInterval(function() {
+                var location = {
+                    busId: busId,
+                    latitude: getRandomLatitude(),
+                    longitude: getRandomLongitude()
+                };
+                stompClient.send("/api/v1/app/bus/" + busId + "/location", {}, JSON.stringify(location));
+            }, 1000);  // Send location every second
+        }
+
+        function stopSendingLocation() {
+            clearInterval(intervalId);
+        }
+
+        function getRandomLatitude() {
+            return (Math.random() * 180 - 90).toFixed(6);  // Generates a latitude between -90 and 90
+        }
+
+        function getRandomLongitude() {
+            return (Math.random() * 360 - 180).toFixed(6);  // Generates a longitude between -180 and 180
+        }
+
+        function showLocation(location) {
+            var response = document.getElementById("response");
+            var p = document.createElement('p');
+            p.appendChild(document.createTextNode('Bus ' + location.busId + ': ' + location.latitude + ', ' + location.longitude));
+            response.appendChild(p);
+        }
+
+        window.onload = function () {
+            var busId = prompt("Enter Bus ID");
+            connect(busId);
+            document.getElementById("startButton").onclick = function() { startSendingLocation(busId); };
+            document.getElementById("stopButton").onclick = function() { stopSendingLocation(); };
+        };
+    </script>
+</head>
+<body>
+<div>
+    <button id="startButton">Start Sending Location</button>
+    <button id="stopButton">Stop Sending Location</button>
+</div>
+<div id="response"></div>
+</body>
+</html>
